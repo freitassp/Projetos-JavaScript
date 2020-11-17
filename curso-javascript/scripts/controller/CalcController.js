@@ -3,37 +3,36 @@ class CalcController {
 
     
     constructor(){
-
-         this._displayCalc = "0";
-         this._currentDate;
-         this.initialize();
+        this._displayCalcEl =  document.querySelector("#display");
+        this._dateEl =  document.querySelector("#data");
+        this._timeEl = document.querySelector("#hora");
+        this._currentDate;
+        this.initialize();
     }
 
 
     initialize(){
 
-       let displayCalcEl =  document.querySelector("#display");
-       let dateEl =  document.querySelector("#data");
-       let timeEl = document.querySelector("#hora");
+      
        
-       displayCalcEl.innerHTML = "456";
-       dateEl.innerHTML = "01/11/2020";
-       timeEl.innerHTML = "10:08";
+      
+       this._dateEl.innerHTML = "01/11/2020";
+       this._timeEl.innerHTML = "10:08";
     }
 
     get displayCalc(){
 
-        return this._displayCalc;
+        return this._displayCalcEl.innerHTML;
     }
 
     set displayCalc(valor){
 
-        this._displayCalc = valor;
+        this._displayCalcEl.innerHTML = valor;
     }
 
     get currentDate(){
 
-        return this._dataAtual;
+        return new Date();
     }
 
     set currentDate(novaData){
