@@ -3,31 +3,81 @@ class CalcController {
 
     
     constructor(){
+        this._Locale = 'pt-BR';
         this._displayCalcEl =  document.querySelector("#display");
         this._dateEl =  document.querySelector("#data");
         this._timeEl = document.querySelector("#hora");
         this._currentDate;
         this.initialize();
+        this.initButtonEvents();
     }
 
 
     initialize(){
+        this.setDisplayDateTime();
 
+        let interval = setInterval(() => {
+            this.setDisplayDateTime();
+            
+        }, 1000);
       
-       
-      
-       this._dateEl.innerHTML = "01/11/2020";
-       this._timeEl.innerHTML = "10:08";
+        
     }
+
+    initButtonEvents(){
+       let buttons = document.querySelectorAll("#buttons > g, #parts > g");
+
+       //buttons.addEventListener('click', e =>{
+            //console.log(e);
+      // });
+
+      buttons.forEach((btn, index)=>{
+
+        btn.addEventListener('click', e =>{
+            console.log(btn.className.baseVal.replace("btn-",""));
+      });
+
+      });
+
+    }
+
+    setDisplayDateTime(){
+        this.displayDate =  this.currentDate.toLocaleDateString(this._Locale);
+        this.displayTime =  this.currentDate.toLocaleTimeString(this._Locale);
+
+
+    } 
+
+    get displayTime(){
+        return this._timeEl.innerHTML;
+
+    }
+
+    set displayTime(value){
+        return this._timeEl.innerHTML =  value;
+
+    }
+
+    get displayDate(){
+        return this._dateEl.innerHTML;
+
+    }
+
+    set displayDate(value){
+        return this._dateEl.innerHTML =  value;
+
+    }
+
+
 
     get displayCalc(){
 
         return this._displayCalcEl.innerHTML;
     }
 
-    set displayCalc(valor){
+    set displayCalc(value){
 
-        this._displayCalcEl.innerHTML = valor;
+        this._displayCalcEl.innerHTML = value;
     }
 
     get currentDate(){
